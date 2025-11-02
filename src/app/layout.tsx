@@ -16,8 +16,8 @@ const tiemann = localFont({
 });
 
 export const metadata: Metadata = {
-    title: 'Pretty Sports Wear',
-    description: 'Pretty clothing',
+    title: 'Momotaj Clothing Store',
+    description: 'Traditional clothing',
 };
 
 export default function RootLayout({

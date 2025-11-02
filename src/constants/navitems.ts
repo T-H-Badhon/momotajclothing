@@ -122,6 +122,10 @@ export const leftNavItems: NavItemProps[] = [
 
 export const rightNavItems: NavItemProps[] = [
     {
+        category: 'All Products',
+        path: '/products',
+    },
+    {
         category: 'about us',
         path: '/about',
     },

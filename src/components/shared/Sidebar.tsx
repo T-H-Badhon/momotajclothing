@@ -106,27 +106,6 @@ const Sidebar = ({
                                 Log in
                             </p>
                         </Link>
-
-                        <div
-                            className={`grid grid-cols-3 items-center justify-center overflow-hidden p-[15px] transition-transform duration-700 ease-in-out ${showSidebar ? 'translate-y-0 delay-200' : 'translate-y-6'}`}
-                        >
-                            <SocialMediaLink
-                                href="#"
-                                icon={<FaInstagram className="size-5" />}
-                            />
-                            <SocialMediaLink
-                                href="#"
-                                icon={<FaFacebookF className="size-5" />}
-                            />
-                            <SocialMediaLink
-                                href="#"
-                                icon={<FaYoutube className="size-5" />}
-                            />
-                            <SocialMediaLink
-                                href="#"
-                                icon={<FaTiktok className="size-5" />}
-                            />
-                        </div>
                     </div>
                 </div>
             </div>

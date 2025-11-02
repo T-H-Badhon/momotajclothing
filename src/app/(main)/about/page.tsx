@@ -57,47 +57,7 @@ const AboutUs = () => {
                 #BENGALICULTURE #TRADITIONALWEAR @BANGLA.CLOTHING
             </h1>
 
-            <div className="my-7 space-y-3">
-                <h1 className="font-primary text-[13.6px] font-semibold md:text-[16px]">
-                    SOCIAL LINKS
-                </h1>
-                <div>
-                    <div className="group relative mx-auto w-fit">
-                        <Link href="#">
-                            <h1 className="border-b-[1px] border-gray-300 font-primary text-[13.6px] font-semibold text-bodyTextPink md:text-[16px]">
-                                TikTok
-                            </h1>
-                        </Link>
-                        <span className="absolute bottom-0 left-0 right-0 z-20 h-[1.5px] w-0 transition-all duration-300 ease-in-out group-hover:w-full group-hover:bg-black"></span>
-                    </div>
-                    <div className="group relative mx-auto w-fit">
-                        <Link href="#">
-                            <h1 className="border-b-[1px] border-gray-300 font-primary text-[13.6px] font-semibold text-bodyTextPink md:text-[16px]">
-                                Instagram
-                            </h1>
-                        </Link>
-                        <span className="absolute bottom-0 left-0 right-0 z-20 h-[2px] w-0 transition-all duration-300 ease-in-out group-hover:w-full group-hover:bg-black"></span>
-                    </div>
-                    <div className="group relative mx-auto w-fit">
-                        <Link href="#">
-                            <h1 className="border-b-[1px] border-gray-300 font-primary text-[13.6px] font-semibold text-bodyTextPink md:text-[16px]">
-                                Facebook
-                            </h1>
-                        </Link>
-                        <span className="absolute bottom-0 left-0 right-0 z-20 h-[1.5px] w-0 transition-all duration-300 ease-in-out group-hover:w-full group-hover:bg-black"></span>
-                    </div>
-                    <div className="group relative mx-auto w-fit">
-                        <Link href="#">
-                            <h1 className="border-b-[1px] border-gray-300 font-primary text-[13.6px] font-semibold text-bodyTextPink md:text-[16px]">
-                                YouTube
-                            </h1>
-                        </Link>
-                        <span className="absolute bottom-0 left-0 right-0 z-20 h-[1.5px] w-0 transition-all duration-300 ease-in-out group-hover:w-full group-hover:bg-black"></span>
-                    </div>
-                </div>
-            </div>
-
-            <div className="space-y-5 font-primary text-[13.6px] md:text-[16px]">
+            <div className="space-y-5 font-primary text-[13.6px] md:text-[16px] mt-5">
                 <h1>Thank you for your love and support.</h1>
                 <h1>
                     Every order you place brings a smile to our team — we truly
