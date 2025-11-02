@@ -22,7 +22,7 @@ const OfferSlider = () => {
             <Slider {...settings} className="h-[56px] md:h-[42px]">
                 {/*  */}
                 <SliderContent
-                    text="Worldwide shipping"
+                    text="Nationwide shipping"
                     textSpan="Spend TK500 = Free in Kushtia"
                 />
                 <SliderContent
