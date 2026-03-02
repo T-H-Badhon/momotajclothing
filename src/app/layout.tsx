@@ -46,8 +46,8 @@ export default function RootLayout({
                           // Optional: Set user details for the chatbot widget.
                           // Populate these from your auth/session on the client if needed.
                           window.MMChatbotUser = window.MMChatbotUser || {
-                            name: '',
-                            email: '',
+                            name: 'r df dfgdfg',
+                            email: 'fsfsdf@gmail.com',
                             phone: '',
                             photo: '',
                           };
