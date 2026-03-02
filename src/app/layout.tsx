@@ -40,7 +40,22 @@ export default function RootLayout({
                         className="fixed"
                     />
                 </div>
-                <script src="http://localhost:5002/api/tooltip-campaign-embed/widget/b2a850ce733fc1cfe720b8af07d4aba559a1d24ee96f67dfcd4dfc15754e5537"></script>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                          // Optional: Set user details for the chatbot widget.
+                          // Populate these from your auth/session on the client if needed.
+                          window.MMChatbotUser = window.MMChatbotUser || {
+                            name: '',
+                            email: '',
+                            phone: '',
+                            photo: '',
+                          };
+                        `,
+                    }}
+                />
+
+                <script src="http://localhost:5002/api/ai-chatbot/chatbot-widget/bot_1cd95b9c-fe7b-4e85-87d2-be620d99e9b2"></script>
             </body>
         </html>
     );
