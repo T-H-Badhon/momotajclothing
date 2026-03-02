@@ -40,7 +40,7 @@ export default function RootLayout({
                         className="fixed"
                     />
                 </div>
-                <script src="http://localhost:5002/tooltip-embed.js" data-api-key="dfddb5c29e78f6aef3f41badf74bae19e499172cf7c16f7e2b39dd1151e4cee4" data-base-url="http://localhost:5002/api"></script>
+                <script src="http://localhost:5002/api/tooltip-campaign-embed/widget/b2a850ce733fc1cfe720b8af07d4aba559a1d24ee96f67dfcd4dfc15754e5537"></script>
             </body>
         </html>
     );
