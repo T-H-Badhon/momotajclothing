@@ -55,7 +55,7 @@ export default function RootLayout({
                     }}
                 />
 
-                <script src="http://localhost:5002/api/ai-chatbot/chatbot-widget/bot_1cd95b9c-fe7b-4e85-87d2-be620d99e9b2"></script>
+                <script src="http://localhost:5002/api/ai-chatbot/chatbot-widget/bot_2025cddc-2a31-4824-9abf-d0adaa086672"></script>
             </body>
         </html>
     );
