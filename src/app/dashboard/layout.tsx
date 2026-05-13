@@ -51,4 +51,5 @@ function DashboardLayout({ children }: React.PropsWithChildren) {
     );
 }
 
-export default isAdmin(DashboardLayout);
+// export default isAdmin(DashboardLayout);
+export default DashboardLayout;
