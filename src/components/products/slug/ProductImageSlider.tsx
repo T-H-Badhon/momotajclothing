@@ -8,6 +8,7 @@ import {
 } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { useRef, useState } from 'react';
+import { resolveImage } from 'src/utils/resolve-image';
 
 const ProductImageSlider = ({ images }: { images: string[] }) => {
     const [activeSlide, setActiveSlide] = useState(0);
@@ -52,7 +53,7 @@ const ProductImageSlider = ({ images }: { images: string[] }) => {
                             onClick={() => setActiveSlide(index)}
                         >
                             <Image
-                                src={process.env.NEXT_PUBLIC_MEDIA + image}
+                                src={resolveImage(image)}
                                 width={250}
                                 height={100}
                                 alt={`Product Image ${index + 1}`}
@@ -90,7 +91,7 @@ const ProductImageSlider = ({ images }: { images: string[] }) => {
                         {images.map((image, index) => (
                             <Slide index={index} key={index}>
                                 <ImageWithZoom
-                                    src={process.env.NEXT_PUBLIC_MEDIA + image}
+                                    src={resolveImage(image)}
                                 />
                             </Slide>
                         ))}

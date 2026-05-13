@@ -2,6 +2,7 @@ import { EmblaOptionsType } from 'embla-carousel';
 
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
+import { resolveImage } from 'src/utils/resolve-image';
 import { DotButton, useDotButton } from './ProductSlideDotBtn';
 
 type PropType = {
@@ -26,7 +27,7 @@ const ProductSlide: React.FC<PropType> = (props) => {
                                 <div className="relative h-[450px] sm:h-[700px]">
                                     <Image
                                         src={
-                                            process.env.NEXT_PUBLIC_MEDIA + each
+                                            resolveImage(each)
                                         }
                                         width={500}
                                         height={500}

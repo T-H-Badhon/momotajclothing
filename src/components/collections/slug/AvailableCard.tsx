@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { resolveImage } from 'src/utils/resolve-image';
 import { ProductData } from 'src/types';
 
 const AvailableCard = ({ product }: { product: ProductData }) => {
@@ -9,7 +10,7 @@ const AvailableCard = ({ product }: { product: ProductData }) => {
                 {/* Image container */}
                 <div className="relative overflow-hidden bg-sand">
                     <Image
-                        src={process.env.NEXT_PUBLIC_MEDIA + product?.images[0]}
+                        src={resolveImage(product?.images[0])}
                         width={600}
                         height={750}
                         className="aspect-[4/5] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"

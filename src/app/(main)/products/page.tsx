@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { resolveImage } from 'src/utils/resolve-image';
 import ShopPagePagination from 'src/components/products/common/ShopPagePagination';
 import ShopSort from 'src/components/products/common/ShopSort';
 import {
@@ -69,8 +70,7 @@ const Products = async ({ searchParams }: SearchParams) => {
                             <div className="relative overflow-hidden bg-sand">
                                 <Image
                                     src={
-                                        process.env.NEXT_PUBLIC_MEDIA +
-                                        p?.images[0]
+                                        resolveImage(p?.images[0])
                                     }
                                     width={800}
                                     height={1000}

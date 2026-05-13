@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { resolveImage } from 'src/utils/resolve-image';
 import { ProductData } from 'src/types';
 
 const Collection = ({ products }: { products: ProductData[] }) => {
@@ -26,7 +27,7 @@ const Card = ({ product }: { product: ProductData }) => {
         <Link href={`/products/${product.slug}`} className="group block cursor-pointer">
             <div className="relative overflow-hidden bg-sand">
                 <Image
-                    src={process.env.NEXT_PUBLIC_MEDIA + product?.images[0]}
+                    src={resolveImage(product?.images[0])}
                     width={800}
                     height={1000}
                     className="aspect-[4/5] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
