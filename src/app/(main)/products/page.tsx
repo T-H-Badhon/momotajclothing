@@ -53,11 +53,8 @@ const Products = async ({ searchParams }: SearchParams) => {
                         {filteredProducts.length}{' '}
                         {filteredProducts.length === 1 ? 'item' : 'items'}
                     </p>
-                    <DropdownMenuTrigger asChild>
-                        <button className="flex items-center gap-2 border border-border px-4 py-2 font-primary text-[10px] uppercase tracking-[2px] text-bodyText transition-colors hover:border-bodyText">
-                            Filter
-                            <span className="text-accent">+</span>
-                        </button>
+                    <DropdownMenuTrigger className="border border-border px-4 py-2 font-primary text-[10px] uppercase tracking-[2px] text-bodyText transition-colors hover:border-bodyText focus:outline-none">
+                        Filter
                     </DropdownMenuTrigger>
                 </div>
 
