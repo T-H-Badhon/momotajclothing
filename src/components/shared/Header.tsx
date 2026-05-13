@@ -1,306 +1,111 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import { rightNavItems } from 'src/constants/navitems';
 import Sidebar from './Sidebar';
 
 type Subcategory = {
-    item: string;
+    item?: string;
     path: string;
 };
 
 type NavItem = {
     category: string;
     path: string;
-    subcategory: Subcategory[];
+    subcategory?: Subcategory[];
 };
 
-const Header = ({ leftNavs }: any) => {
+const DesktopNavItem = ({ item }: { item: NavItem }) => (
+    <div className="group relative">
+        <Link
+            href={item.path}
+            className="block py-2 font-primary text-[10.5px] uppercase tracking-[2px] text-bodyText transition-colors duration-200 hover:text-accent"
+        >
+            {item.category}
+        </Link>
+        <span className="absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
+        {item.subcategory && item.subcategory.length > 0 && (
+            <div className="invisible absolute left-0 top-full z-50 min-w-[180px] border border-border bg-body py-2 opacity-0 shadow-md transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                {item.subcategory.map((sub, i) => (
+                    <Link key={i} href={sub.path}>
+                        <p className="px-5 py-[7px] font-primary text-[10px] uppercase tracking-[1.5px] text-bodyText transition-colors duration-150 hover:bg-sand hover:text-accent">
+                            {sub.item}
+                        </p>
+                    </Link>
+                ))}
+            </div>
+        )}
+    </div>
+);
+
+const Header = ({ leftNavs }: { leftNavs: string }) => {
     const leftNavItems: NavItem[] = JSON.parse(leftNavs);
-    const [showSidebar, setShowSidebar] = useState<boolean>(false);
-    const [showNavbar, setShowNavbar] = useState<boolean>(false);
+    const [showSidebar, setShowSidebar] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
-    const toggleSidebar = () => {
-        setShowSidebar(!showSidebar);
-    };
+    const toggleSidebar = () => setShowSidebar((p) => !p);
 
-    const handleScroll = useCallback(() => {
-        if (typeof window !== undefined) {
-            if (window.scrollY >= 150) {
-                setShowNavbar(true);
-            } else {
-                setShowNavbar(false);
-            }
-        }
+    useEffect(() => {
+        const handleScroll = () => setIsScrolled(window.scrollY > 40);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
-            window.addEventListener('scroll', handleScroll);
-        }
-        if (showSidebar) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
+        document.body.style.overflow = showSidebar ? 'hidden' : '';
         return () => {
-            window.removeEventListener('scroll', handleScroll);
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = '';
         };
-    }, [handleScroll, showSidebar]);
+    }, [showSidebar]);
 
     return (
         <>
-            {/* nav */}
-            <div className="mx-auto flex h-[60px] max-w-[1500px] items-center justify-center px-4 shadow-sm md:h-[182px] md:px-10 md:py-5 lg:h-[112px] xl:h-[102px]">
-                {/* nav contents */}
-                <div className="flex w-full items-center justify-between">
-                    <div className="w-[87px] md:w-[110px]">
-                        <div className="flex w-full items-center justify-start">
-                            <button
-                                onClick={toggleSidebar}
-                                className="md:hidden"
-                            >
-                                <HiOutlineMenuAlt1 className="size-[30px] md:size-7" />
-                            </button>
-                            {/* <button className="hidden py-[7.5px] md:block">
-                                <CiSearch className="size-[30px] md:size-7" />
-                            </button> */}
-                        </div>
-                    </div>
-                    <div className="flex items-center justify-center">
-                        {/* left nav items container */}
-                        <nav className="hidden items-center justify-center gap-x-7 md:block lg:flex lg:flex-wrap lg:px-16 xl:flex-nowrap xl:gap-x-7 xl:px-5">
-                            {leftNavItems.map((each, index) => (
-                                <div
-                                    key={index}
-                                    className="cursor-pointer text-center"
-                                >
-                                    <li className="group relative inline-block list-none py-[7px] text-[13px] uppercase">
-                                        <Link href={each?.path} className="">
-                                            {each?.category}
-                                        </Link>
-
-                                        <span className="absolute bottom-0 left-0 right-0 z-20 h-[1.5px] w-0 transition-all duration-300 ease-in-out group-hover:w-full group-hover:bg-black"></span>
-
-                                        {/* Dropdown content */}
-                                        <div
-                                            className={`${each?.subcategory ? 'invisible absolute -left-5 top-7 z-10 w-48 bg-body p-5 opacity-0 shadow-md transition-all duration-300 ease-in-out group-hover:visible group-hover:opacity-100' : ''} `}
-                                        >
-                                            {each?.subcategory?.map((subs) => (
-                                                <Link
-                                                    key={subs?.item}
-                                                    href={subs?.path}
-                                                >
-                                                    <p className="py-2 text-start">
-                                                        {subs?.item}
-                                                    </p>
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </li>
-                                </div>
-                            ))}
-                        </nav>
-
-                        {/* logo */}
-                        <Link href="/" className="md:px-10 lg:px-0 xl:px-10">
-                            <div className="h-[60px]">
-                                <Image
-                                    src="/pretty.png"
-                                    width={300}
-                                    height={60}
-                                    className="h-full w-full"
-                                    alt=""
-                                    priority
-                                />
-                            </div>
-                        </Link>
-
-                        {/* right nav items container */}
-                        <nav className="hidden items-center justify-center gap-x-7 md:block lg:flex lg:flex-wrap lg:px-16 xl:flex-nowrap xl:gap-x-7 xl:px-5">
-                            {rightNavItems.map((each, index) => (
-                                <div
-                                    key={index}
-                                    className="cursor-pointer text-center"
-                                >
-                                    <li className="group relative inline-block list-none py-[7px] text-[13px] uppercase">
-                                        <Link href={each?.path}>
-                                            {each?.category}
-                                        </Link>
-                                        <span className="absolute bottom-0 left-0 right-0 z-20 h-[1.5px] w-0 transition-all duration-300 ease-in-out group-hover:w-full group-hover:bg-black"></span>
-
-                                        {/* Dropdown content */}
-                                        <div
-                                            className={`${each?.subcategory ? 'absolute -left-5 top-10 z-30 hidden w-48 bg-body px-5 shadow-md transition-all duration-300 ease-in-out group-hover:block' : ''} `}
-                                        >
-                                            {each?.subcategory?.map((subs) => (
-                                                <link
-                                                    key={subs?.path}
-                                                    href={subs?.path}
-                                                >
-                                                    <p className="py-2 text-start">
-                                                        {subs?.item}
-                                                    </p>
-                                                </link>
-                                            ))}
-                                        </div>
-                                    </li>
-                                </div>
-                            ))}
-                        </nav>
-                    </div>
-                    <div className="w-[87px] md:w-[110px]">
-                        <div className="flex w-full items-center justify-end">
-                            {/* <Link href="/login" className="hidden md:block">
-                                <p className="px-[7.5px] py-[7.5px] md:px-[12px]">
-                                    <SlUser className="size-7 opacity-70" />
-                                </p>
-                            </Link>
-                            <Link href="#" className="inline-block md:hidden">
-                                <p className="px-[7.5px] py-[7.5px] md:px-[12px]">
-                                    <CiSearch className="size-7" />
-                                </p>
-                            </Link> */}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* fixed nav */}
-            <div
-                className={`fixed left-0 right-0 flex h-[60px] w-full items-center justify-center bg-body ${showNavbar ? 'top-0 z-50' : '-top-[200px] z-0'} shadow-sm transition-all duration-300 ease-in md:h-[162px] md:py-5 lg:h-[92px] xl:h-[82px]`}
+            <header
+                className={`sticky top-0 z-50 bg-body border-b border-border transition-shadow duration-300 ${
+                    isScrolled ? 'shadow-sm' : ''
+                }`}
             >
-                <div className={`mx-auto w-full max-w-[1500px] px-4 md:px-10`}>
-                    {/* nav contents */}
-                    <div className="flex w-full items-center justify-between">
-                        <div className="w-[87px] md:w-[110px]">
-                            <div className="flex w-full items-center justify-start">
-                                <button
-                                    onClick={toggleSidebar}
-                                    className="md:hidden"
-                                >
-                                    <HiOutlineMenuAlt1 className="size-[30px] md:size-7" />
-                                </button>
-                                {/* <button className="hidden py-[7.5px] md:block">
-                                    <CiSearch className="size-[30px] md:size-7" />
-                                </button> */}
-                            </div>
-                        </div>
-                        <div className="flex items-center justify-center">
-                            {/* left nav items container */}
-                            <nav className="hidden items-center justify-center gap-x-7 md:block lg:flex lg:flex-wrap lg:px-16 xl:flex-nowrap xl:gap-x-7 xl:px-5">
-                                {leftNavItems.map((each, index) => (
-                                    <div
-                                        key={index}
-                                        className="cursor-pointer text-center"
-                                    >
-                                        <li className="group relative inline-block list-none py-[7px] text-[13px] uppercase">
-                                            <Link
-                                                href={each?.path}
-                                                className=""
-                                            >
-                                                {each?.category}
-                                            </Link>
+                <div className="mx-auto flex h-[64px] max-w-[1500px] items-center px-4 md:px-10">
+                    {/* Left: hamburger (mobile) or left nav (desktop) */}
+                    <div className="flex flex-1 items-center">
+                        <button
+                            onClick={toggleSidebar}
+                            className="p-1 md:hidden"
+                            aria-label="Open menu"
+                        >
+                            <HiOutlineMenuAlt1 className="size-6" />
+                        </button>
+                        <nav className="hidden items-center gap-6 md:flex lg:gap-8">
+                            {leftNavItems.map((item, i) => (
+                                <DesktopNavItem key={i} item={item} />
+                            ))}
+                        </nav>
+                    </div>
 
-                                            <span className="absolute bottom-0 left-0 right-0 z-20 h-[1.5px] w-0 transition-all duration-300 ease-in-out group-hover:w-full group-hover:bg-black"></span>
+                    {/* Center: Logo */}
+                    <Link href="/" className="flex-shrink-0 px-4 md:px-8">
+                        <Image
+                            src="/pretty.png"
+                            width={180}
+                            height={44}
+                            className="h-[40px] w-auto object-contain"
+                            alt="Momotaj Clothing"
+                            priority
+                        />
+                    </Link>
 
-                                            {/* Dropdown content */}
-                                            <div
-                                                className={`${each?.subcategory ? 'invisible absolute -left-5 top-7 z-10 w-48 bg-body p-5 opacity-0 shadow-md transition-all duration-300 ease-in-out group-hover:visible group-hover:opacity-100' : ''} `}
-                                            >
-                                                {each?.subcategory?.map(
-                                                    (subs) => (
-                                                        <Link
-                                                            key={subs?.item}
-                                                            href={subs?.path}
-                                                        >
-                                                            <p className="py-2 text-start">
-                                                                {subs?.item}
-                                                            </p>
-                                                        </Link>
-                                                    ),
-                                                )}
-                                            </div>
-                                        </li>
-                                    </div>
-                                ))}
-                            </nav>
-
-                            {/* logo */}
-                            <Link
-                                href="/"
-                                className="md:px-10 lg:px-0 xl:px-10"
-                            >
-                                <div className="h-[60px]">
-                                    <Image
-                                        src="/pretty.png"
-                                        width={300}
-                                        height={50}
-                                        className="h-full w-full"
-                                        alt=""
-                                        priority
-                                    />
-                                </div>
-                            </Link>
-
-                            {/* right nav items container */}
-                            <nav className="hidden items-center justify-center gap-x-7 md:block lg:flex lg:flex-wrap lg:px-16 xl:flex-nowrap xl:gap-x-7 xl:px-5">
-                                {rightNavItems.map((each, index) => (
-                                    <div
-                                        key={index}
-                                        className="cursor-pointer text-center"
-                                    >
-                                        <li className="group relative inline-block list-none py-[7px] text-[13px] uppercase">
-                                            <Link href={each?.path}>
-                                                {each?.category}
-                                            </Link>
-                                            <span className="absolute bottom-0 left-0 right-0 z-20 h-[1.5px] w-0 transition-all duration-300 ease-in-out group-hover:w-full group-hover:bg-black"></span>
-
-                                            {/* Dropdown content */}
-                                            <div
-                                                className={`${each?.subcategory ? 'absolute -left-5 top-10 z-30 hidden w-48 bg-body px-5 shadow-md transition-all duration-300 ease-in-out group-hover:block' : ''} `}
-                                            >
-                                                {each?.subcategory?.map(
-                                                    (subs) => (
-                                                        <link
-                                                            key={subs?.path}
-                                                            href={subs?.path}
-                                                        >
-                                                            <p className="py-2 text-start">
-                                                                {subs?.item}
-                                                            </p>
-                                                        </link>
-                                                    ),
-                                                )}
-                                            </div>
-                                        </li>
-                                    </div>
-                                ))}
-                            </nav>
-                        </div>
-                        <div className="w-[87px] md:w-[110px]">
-                            <div className="flex w-full items-center justify-end">
-                                {/* <Link href="/login" className="hidden md:block">
-                                    <p className="px-[7.5px] py-[7.5px] md:px-[12px]">
-                                        <SlUser className="size-7 opacity-70" />
-                                    </p>
-                                </Link> */}
-                                {/* <Link
-                                    href="#"
-                                    className="inline-block md:hidden"
-                                >
-                                    <p className="px-[7.5px] py-[7.5px] md:px-[12px]">
-                                        <CiSearch className="size-7" />
-                                    </p>
-                                </Link> */}
-                            </div>
-                        </div>
+                    {/* Right nav */}
+                    <div className="flex flex-1 items-center justify-end">
+                        <nav className="hidden items-center gap-6 md:flex lg:gap-8">
+                            {rightNavItems.map((item, i) => (
+                                <DesktopNavItem key={i} item={item} />
+                            ))}
+                        </nav>
                     </div>
                 </div>
-            </div>
+            </header>
             <Sidebar
                 toggleSidebar={toggleSidebar}
                 showSidebar={showSidebar}

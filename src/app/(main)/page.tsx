@@ -1,7 +1,6 @@
 import { GetAllSliders } from 'src/components/actions/sliderActions';
 import Banner from 'src/components/home/Banner';
 import NowAvailable from 'src/components/home/NowAvailable';
-import ReStock from 'src/components/home/ReStock';
 import Shout from 'src/components/home/Shout';
 import Product from 'src/modules/products/products.model';
 import connectMongo from 'src/utils/connect-mongo';
@@ -17,6 +16,7 @@ const Home = async () => {
         <>
             <Banner sliders={JSON.stringify(sliders)} />
             <NowAvailable products={products} />
+            <Shout />
         </>
     );
 };

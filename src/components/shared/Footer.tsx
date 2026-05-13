@@ -1,106 +1,110 @@
-'use client';
-import { Accordion, AccordionItem as Item } from '@szhsin/react-accordion';
 import Link from 'next/link';
-import React, { useState } from 'react';
 import { FaFacebookF, FaInstagram } from 'react-icons/fa';
-import { SlArrowDown } from 'react-icons/sl';
-import { TfiEmail } from 'react-icons/tfi';
-
-interface AccordionItemProps {
-    header: string;
-    initialEntered?: boolean;
-    children: React.ReactNode;
-}
 
 const Footer = () => {
-    const [isFocused, setIsFocused] = useState<boolean>(false);
-
     return (
-        <div className="">
-            <div className="py-[40px] md:border-t md:py-[60px]">
-                <div className="mx-auto max-w-[1500px] md:px-10">
-                    {/* medium up devices footer */}
-                    <div className="hidden gap-y-10 px-4 md:grid md:grid-cols-2 lg:flex lg:gap-y-0">
-                        <div className="space-y-5 lg:w-[30%]">
-                            {/* <h2 className="text-xs uppercase tracking-widest">
-                                Collections
-                            </h2>
-                            <ul className="flex w-fit flex-col gap-y-2 text-sm">
-                                <Link href="/collections/women-yoga-sets">
-                                    <li>Women</li>
-                                </Link>
-                                <Link href="/collections/men-vest">
-                                    <li>Men</li>
-                                </Link>
+        <footer className="border-t border-border bg-[#111111] text-[#F8F5EF]">
+            <div className="mx-auto max-w-[1500px] px-6 py-12 md:px-10 md:py-16">
+                <div className="grid grid-cols-2 gap-10 md:grid-cols-4">
+                    {/* Brand */}
+                    <div className="col-span-2 space-y-4 md:col-span-1">
+                        <h3 className="font-secondary text-xl uppercase tracking-[4px] text-[#F8F5EF]">
+                            Momotaj
+                        </h3>
+                        <p className="font-primary text-[12px] leading-relaxed tracking-wide text-[#F8F5EF]/60">
+                            Traditional Bengali elegance for the modern world.
+                            Karimpur, Kushtia Sadar, Kushtia.
+                        </p>
+                        <div className="flex gap-3 pt-1">
+                            <Link
+                                href="#"
+                                className="flex h-8 w-8 items-center justify-center border border-[#F8F5EF]/20 text-[#F8F5EF]/60 transition-colors duration-200 hover:border-accent hover:text-accent"
+                            >
+                                <FaFacebookF size={11} />
+                            </Link>
+                            <Link
+                                href="#"
+                                className="flex h-8 w-8 items-center justify-center border border-[#F8F5EF]/20 text-[#F8F5EF]/60 transition-colors duration-200 hover:border-accent hover:text-accent"
+                            >
+                                <FaInstagram size={11} />
+                            </Link>
+                        </div>
+                    </div>
 
-                                <Link href="/collections/kids-yoga-wear">
-                                    <li>Kids</li>
-                                </Link>
-                                <Link href="/collections/swimwear-swimwear">
-                                    <li>Swimwear</li>
-                                </Link>
-                            </ul> */}
-                        </div>
-                        <div className="space-y-5 lg:w-[30%]">
-                            <h2 className="text-xs uppercase tracking-widest">
-                                Company
-                            </h2>
-                            <ul className="flex w-fit flex-col gap-y-2 text-sm">
-                                <Link href="/about">
-                                    <li>About Us</li>
-                                </Link>
-                                <Link href="/contact">
-                                    <li>Contact</li>
-                                </Link>
-                            </ul>
-                        </div>
-                        <div className="space-y-5 lg:w-[25%] xl:w-[30%]">
-                            <h2 className="text-xs uppercase tracking-widest">
-                                CONTACT US
-                            </h2>
-                            <p className="text-[13px]">
-                                Please call for any query <br />
+                    {/* Shop */}
+                    <div className="space-y-4">
+                        <h4 className="font-primary text-[9px] uppercase tracking-[3px] text-accent">
+                            Shop
+                        </h4>
+                        <ul className="space-y-3">
+                            {[
+                                { label: 'All Products', href: '/products' },
+                                { label: 'Collections', href: '/collections' },
+                                { label: 'New Arrivals', href: '/products' },
+                            ].map((link) => (
+                                <li key={link.label}>
+                                    <Link
+                                        href={link.href}
+                                        className="font-primary text-[12px] tracking-wide text-[#F8F5EF]/60 transition-colors duration-200 hover:text-accent"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Company */}
+                    <div className="space-y-4">
+                        <h4 className="font-primary text-[9px] uppercase tracking-[3px] text-accent">
+                            Company
+                        </h4>
+                        <ul className="space-y-3">
+                            {[
+                                { label: 'Our Story', href: '/about' },
+                                { label: 'Contact Us', href: '/contact' },
+                            ].map((link) => (
+                                <li key={link.label}>
+                                    <Link
+                                        href={link.href}
+                                        className="font-primary text-[12px] tracking-wide text-[#F8F5EF]/60 transition-colors duration-200 hover:text-accent"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Contact */}
+                    <div className="space-y-4">
+                        <h4 className="font-primary text-[9px] uppercase tracking-[3px] text-accent">
+                            Contact
+                        </h4>
+                        <div className="space-y-2">
+                            <p className="font-primary text-[12px] tracking-wide text-[#F8F5EF]/60">
                                 +8801970251998
+                            </p>
+                            <p className="font-primary text-[12px] tracking-wide text-[#F8F5EF]/60">
+                                Karimpur, Kushtia Sadar
+                            </p>
+                            <p className="font-primary text-[12px] tracking-wide text-[#F8F5EF]/60">
+                                Available 24 / 7
                             </p>
                         </div>
                     </div>
-                    <p className="pt-5 text-center text-xs tracking-widest">
-                        @2024 Momotaj clothing store.
+                </div>
+
+                <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-[#F8F5EF]/10 pt-6 md:flex-row">
+                    <p className="font-primary text-[10px] uppercase tracking-[2px] text-[#F8F5EF]/30">
+                        © 2024 Momotaj Clothing Store. All rights reserved.
+                    </p>
+                    <p className="font-primary text-[10px] uppercase tracking-[2px] text-[#F8F5EF]/30">
+                        #BengaliCulture &nbsp;·&nbsp; #TraditionalWear
                     </p>
                 </div>
             </div>
-        </div>
-    );
-};
-
-const AccordionItem: React.FC<AccordionItemProps> = ({ header, ...rest }) => {
-    return (
-        <Item
-            {...rest}
-            header={({ state: { isEnter } }) => (
-                <div className="relative flex w-full items-center justify-between">
-                    <span className="mx-auto text-xs tracking-[4px]">
-                        {header}
-                    </span>
-                    <div className="absolute right-0 flex h-[32px] items-center justify-end px-[15px]">
-                        <SlArrowDown
-                            className={`size-[10px] transition-transform duration-200 ease-out ${
-                                isEnter ? 'rotate-180' : ''
-                            }`}
-                        />
-                    </div>
-                </div>
-            )}
-            className="border-t py-[15px]"
-            buttonProps={{
-                className: ({}) =>
-                    `flex w-full text-center uppercase text-[15px] tracking-widest items-center justify-between`,
-            }}
-            contentProps={{
-                className: 'transition-height duration-300 ease-in-out',
-            }}
-            panelProps={{ className: ` py-5 text-center uppercase` }}
-        />
+        </footer>
     );
 };
 

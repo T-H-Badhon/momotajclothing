@@ -1,26 +1,38 @@
+import Link from 'next/link';
 import { ProductData } from 'src/types';
 import AvailableCard from '../collections/slug/AvailableCard';
-import { Button } from '../ui/button';
 
 const NowAvailable = ({ products }: { products: ProductData[] }) => {
     return (
-        <div className="mx-auto max-w-[1500px] px-4 py-[40px] md:px-10 md:py-[60px]">
-            <h1 className="text-center font-secondary text-[28px] font-medium uppercase md:text-[32px]">
-                Now available!
-            </h1>
+        <section className="mx-auto max-w-[1500px] px-4 py-16 md:px-10 md:py-20">
+            {/* Section header */}
+            <div className="mb-10 text-center md:mb-14">
+                <p className="mb-3 font-primary text-[9px] uppercase tracking-[5px] text-accent">
+                    New Collection
+                </p>
+                <h2 className="font-secondary text-[30px] uppercase md:text-[42px]">
+                    Now Available
+                </h2>
+                <div className="mx-auto mt-5 h-px w-12 bg-accent" />
+            </div>
 
-            <div className="grid grid-cols-2 gap-x-3 gap-y-5 py-8 md:grid-cols-4 md:gap-5 md:py-10">
-                {products.map((each) => (
-                    <AvailableCard key={each?._id} product={each} />
+            {/* Product grid */}
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-6">
+                {products.map((product) => (
+                    <AvailableCard key={product?._id} product={product} />
                 ))}
             </div>
 
-            <div className="flex items-center justify-center">
-                <Button variant={'black'} href="/products">
-                    View All
-                </Button>
+            {/* CTA */}
+            <div className="mt-12 flex justify-center">
+                <Link
+                    href="/products"
+                    className="inline-block border border-bodyText px-10 py-[11px] font-primary text-[10px] uppercase tracking-[3px] text-bodyText transition-all duration-300 hover:bg-bodyText hover:text-body"
+                >
+                    View All Products
+                </Link>
             </div>
-        </div>
+        </section>
     );
 };
 

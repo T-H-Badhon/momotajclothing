@@ -1,19 +1,19 @@
 const Shout = () => {
     return (
-        <div className="px-4 text-center text-bodyText md:pb-[60px]">
-            <h1 className="font-secondary text-[28px] font-medium md:text-[32px]">
-                BE BOLD. BE UNIQUE. BE YOU.
-            </h1>
-
-            <div className="pb-8 pt-7 font-primary text-[17px] md:pb-14 md:pt-12 md:text-[20px]">
-                <p>Why blend in when you were born to stand out?</p>
-                <p className="font-bold">#WEARYOURPERSONALITY #PRETTYWEAR</p>
-            </div>
-
-            <p className="text-[18px] font-bold uppercase md:text-[20px]">
-                @pretty.wear
+        <section className="bg-[#111111] px-6 py-16 text-center md:py-24">
+            <p className="mb-4 font-primary text-[9px] uppercase tracking-[5px] text-accent">
+                Our Philosophy
             </p>
-        </div>
+            <h2 className="mx-auto max-w-2xl font-secondary text-[28px] uppercase leading-tight text-[#F8F5EF] md:text-[46px]">
+                Be Bold. Be Unique. Be You.
+            </h2>
+            <p className="mx-auto mt-6 max-w-md font-primary text-[13px] leading-relaxed text-[#F8F5EF]/60 md:text-[15px]">
+                Why blend in when you were born to stand out?
+            </p>
+            <p className="mt-8 font-primary text-[10px] uppercase tracking-[3px] text-accent">
+                #WEARYOURPERSONALITY &nbsp;·&nbsp; @momotaj.clothing
+            </p>
+        </section>
     );
 };
 

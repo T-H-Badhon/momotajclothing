@@ -5,49 +5,43 @@ import { ProductData } from 'src/types';
 const AvailableCard = ({ product }: { product: ProductData }) => {
     return (
         <Link href={`/products/${product.slug}`}>
-            <div className="w-full cursor-pointer">
-                <div className="group relative">
-                    <div className="relative h-full w-full">
-                        <Image
-                            src={
-                                process.env.NEXT_PUBLIC_MEDIA +
-                                product?.images[0]
-                            }
-                            width={1200}
-                            height={800}
-                            className="aspect-square h-full w-full object-cover transition-opacity ease-in-out group-hover:opacity-0"
-                            alt="Product Image"
-                        />
+            <div className="group cursor-pointer">
+                {/* Image container */}
+                <div className="relative overflow-hidden bg-sand">
+                    <Image
+                        src={process.env.NEXT_PUBLIC_MEDIA + product?.images[0]}
+                        width={600}
+                        height={750}
+                        className="aspect-[4/5] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        alt={product?.name}
+                    />
+                    <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
 
-                        <Image
-                            src={
-                                process.env.NEXT_PUBLIC_MEDIA +
-                                product?.images[0]
-                            }
-                            width={800}
-                            height={600}
-                            className="absolute bottom-0 left-0 right-0 top-0 h-full w-full object-cover opacity-0 transition-opacity ease-in-out group-hover:opacity-100"
-                            alt="Hover Product Image"
-                        />
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 z-0 hidden bg-gray-50 px-5 py-3 font-primary transition-all ease-in-out group-hover:block group-hover:bg-opacity-30 lg:px-10">
-                        <div className="flex flex-wrap items-center justify-center gap-1 lg:gap-2">
-                            {product.sizes.map((each, i) => (
-                                <span
-                                    key={i}
-                                    className="bg-body px-1 py-[1px] text-center text-[10px] uppercase text-bodyText hover:bg-gridOverlay hover:text-body lg:text-xs"
-                                >
-                                    {each.value}
-                                </span>
-                            ))}
+                    {/* Size chips — slide up on hover */}
+                    {product.sizes?.length > 0 && (
+                        <div className="absolute bottom-0 left-0 right-0 translate-y-full bg-body/95 px-3 py-2 transition-transform duration-300 ease-out group-hover:translate-y-0">
+                            <div className="flex flex-wrap items-center justify-center gap-1">
+                                {product.sizes.map((s, i) => (
+                                    <span
+                                        key={i}
+                                        className="border border-border px-2 py-0.5 font-primary text-[9px] uppercase tracking-[1px] text-bodyText"
+                                    >
+                                        {s.value}
+                                    </span>
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
-                <div className="mb-3 space-y-1 px-2 pt-2 text-center font-primary text-sm md:space-y-2 md:pt-5 md:text-xs lg:text-sm">
-                    <h3 className="line-clamp-1 uppercase tracking-[2px]">
+
+                {/* Product info */}
+                <div className="pt-3 text-center">
+                    <h3 className="line-clamp-1 font-primary text-[10.5px] uppercase tracking-[2px] text-bodyText">
                         {product?.name}
                     </h3>
-                    {/* <p className="tracking-wide">${product?.price}</p> */}
+                    <p className="mt-1 font-primary text-[11px] tracking-wide text-accent">
+                        TK {product?.price}
+                    </p>
                 </div>
             </div>
         </Link>

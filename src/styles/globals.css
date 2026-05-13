@@ -4,6 +4,7 @@
 
 @layer base {
     :root {
+        /* Typography */
         --typeHeaderPrimary: Tiemann;
         --typeHeaderFallback: serif;
         --typeHeaderSize: 38px;
@@ -24,55 +25,59 @@
         --iconLinecaps: miter;
 
         --buttonRadius: 0px;
-        --colorGridOverlayOpacity: 0.1;
 
-        /* color paleate  */
+        /* Color Palette — Warm Premium */
         --colorBtnPrimary: #111111;
         --colorBtnPrimaryLight: #2b2b2b;
         --colorBtnPrimaryDim: #040404;
-        --colorBtnPrimaryText: #ffffff;
-        --colorLinkText: #2b00ff;
-        --colorCartDot: #f0c7d7;
-        --colorLink: #000000;
-        --colorTextBody: #000000;
-        --colorPrice: #1c1d1d;
-        --colorTextSavings: #fd5496;
-        --colorSaleTag: #1c1d1d;
-        --colorSaleTagText: #ffffff;
-        --colorBody: #ffffff;
-        --colorBodyDim: #f2f2f2;
-        --colorFooter: #ffffff;
-        --colorFooterText: #000000;
-        --colorBorder: #e8e8e1;
-        --colorNav: #ffffff;
-        --colorNavText: #000000;
-        --colorAnnouncement: #0f0f0f;
-        --colorAnnouncementText: #ffffff;
-        --colorHeroText: #ffffff;
-        --colorModalBg: #e6e6e6;
-        --colorImageOverlay: #000000;
-        --colorImageOverlayOpacity: 0.1;
+        --colorBtnPrimaryText: #F8F5EF;
+        --colorLinkText: #9A7B4F;
+        --colorCartDot: #9A7B4F;
+        --colorLink: #111111;
+        --colorTextBody: #111111;
+        --colorPrice: #111111;
+        --colorTextSavings: #9A7B4F;
+        --colorSaleTag: #111111;
+        --colorSaleTagText: #F8F5EF;
+        --colorBody: #F8F5EF;
+        --colorBodyDim: #EDE8DF;
+        --colorFooter: #111111;
+        --colorFooterText: #F8F5EF;
+        --colorBorder: #DDD5C8;
+        --colorNav: #F8F5EF;
+        --colorNavText: #111111;
+        --colorAnnouncement: #111111;
+        --colorAnnouncementText: #F8F5EF;
+        --colorHeroText: #F8F5EF;
+        --colorModalBg: #EDE8DF;
+        --colorImageOverlay: #111111;
+        --colorImageOverlayOpacity: 0.15;
         --colorImageOverlayTextShadow: 0.2;
-        --colorSmallImageBg: #ffffff;
-        --colorLargeImageBg: #0f0f0f;
-        --colorGridOverlay: #000000;
-        --colorGridOverlayOpacity: 0.1;
-        --colorDrawers: #ffffff;
-        --colorDrawersDim: #f2f2f2;
-        --colorDrawerBorder: #e8e8e1;
-        --colorDrawerText: #000000;
-        --colorDrawerTextDark: #000000;
+        --colorSmallImageBg: #F8F5EF;
+        --colorLargeImageBg: #111111;
+        --colorGridOverlay: #111111;
+        --colorGridOverlayOpacity: 0.08;
+        --colorDrawers: #F8F5EF;
+        --colorDrawersDim: #EDE8DF;
+        --colorDrawerBorder: #DDD5C8;
+        --colorDrawerText: #111111;
+        --colorDrawerTextDark: #111111;
         --colorDrawerButton: #111111;
-        --colorDrawerButtonText: #ffffff;
+        --colorDrawerButtonText: #F8F5EF;
+        --colorAccent: #9A7B4F;
         --grid-gutter: 17px;
-        --color-body-text: #000000;
-        --color-body: #ffffff;
-        --color-bg: #ffffff;
+        --color-body-text: #111111;
+        --color-body: #F8F5EF;
+        --color-bg: #F8F5EF;
     }
 }
 
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
 @layer components {
-    /* Navbar CSS */
     .sidebar {
         @apply fixed h-dvh w-full min-[400px]:w-[25rem];
     }
@@ -89,12 +94,10 @@
         @apply min-h-[calc(100vh_-_4rem)];
     }
 
-    /* Default Styling */
     .back-button {
         @apply flex cursor-pointer items-center gap-2 text-xs uppercase transition-colors;
     }
 
-    /* Default Website Spacing */
     .p {
         @apply p-6 sm:p-8;
     }
@@ -116,7 +119,7 @@
     }
 
     .pagination-wrapper ul li a {
-        @apply flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-300;
+        @apply flex h-10 w-10 items-center justify-center rounded-full hover:bg-[#EDE8DF];
     }
 }
 
@@ -124,14 +127,17 @@
     .banner-top-space {
         @apply pt-[40px] lg:pt-[100px];
     }
+    .animate-marquee {
+        animation: marquee 40s linear infinite;
+    }
 }
 
 .placeholder-content {
     background-image: linear-gradient(
         100deg,
-        #ffffff 40%,
-        #f7f7f7 63%,
-        #ffffff 79%
+        #F8F5EF 40%,
+        #EDE8DF 63%,
+        #F8F5EF 79%
     );
 }
 
@@ -164,7 +170,7 @@ textarea {
 }
 
 .shadowFull {
-    box-shadow: 0 0 8px #b4acac;
+    box-shadow: 0 0 8px rgba(180, 172, 172, 0.4);
 }
 
 /* Quill editor styling */
@@ -173,29 +179,28 @@ textarea {
 }
 
 .attribute-list {
-    /* display: table;
-    border-collapse: collapse; */
 }
 .attribute-list .attribute-item {
     display: flex;
-    border: 1px solid #dddddd;
+    border: 1px solid #DDD5C8;
     width: 100%;
-    /* justify-content: space-between; */
     gap: 10px;
     align-items: center;
 }
 .attribute-list .attribute-item > div.left {
     width: 100%;
-    background: #f4f4f4;
+    background: #EDE8DF;
     padding-top: 5px;
     padding-bottom: 5px;
+    padding-left: 8px;
 }
 .attribute-list .attribute-item > div.right {
     width: 100%;
 }
 .attribute-list .attribute-item > div.right {
     font-weight: 500;
-    font-size: 16px;
-    color: #222;
+    font-size: 15px;
+    color: #111111;
     line-height: 22px;
+    padding-left: 8px;
 }

@@ -4,11 +4,17 @@ import { ProductData } from 'src/types';
 
 const Collection = ({ products }: { products: ProductData[] }) => {
     return (
-        <div className="mx-auto max-w-[1500px] px-4 py-[40px] md:px-10 md:py-[60px]">
-            <h1 className="text-center font-secondary text-[28px] font-medium uppercase md:text-[32px]">
-                All Products
-            </h1>
-            <div className="grid grid-cols-2 gap-3 py-5 md:grid-cols-3 md:gap-[22px] md:py-10">
+        <div className="mx-auto max-w-[1500px] px-4 py-12 md:px-10 md:py-16">
+            <div className="mb-10 text-center">
+                <p className="mb-3 font-primary text-[9px] uppercase tracking-[5px] text-accent">
+                    Browse
+                </p>
+                <h1 className="font-secondary text-[32px] uppercase md:text-[44px]">
+                    All Collections
+                </h1>
+                <div className="mx-auto mt-4 h-px w-12 bg-accent" />
+            </div>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
                 {products?.map((p, index) => <Card key={index} product={p} />)}
             </div>
         </div>
@@ -17,26 +23,31 @@ const Collection = ({ products }: { products: ProductData[] }) => {
 
 const Card = ({ product }: { product: ProductData }) => {
     return (
-        <div className="w-full cursor-pointer">
-            <div className="group relative h-[190px] w-full overflow-hidden transition-all duration-300 sm:h-[360px] md:h-[220px] lg:h-[320px] xl:h-[440px]">
+        <Link href={`/products/${product.slug}`} className="group block cursor-pointer">
+            <div className="relative overflow-hidden bg-sand">
                 <Image
                     src={process.env.NEXT_PUBLIC_MEDIA + product?.images[0]}
                     width={800}
-                    height={800}
-                    className="h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
-                    alt=""
+                    height={1000}
+                    className="aspect-[4/5] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    alt={product.name}
                 />
-                <div className="absolute inset-0 transition-all duration-300 group-hover:bg-black/20" />
-                <div className="absolute inset-0 z-10 flex items-center justify-center px-5">
-                    <Link
-                        href={`/products/${product.slug}`}
-                        className="bg-body px-[15px] py-2 text-center font-primary text-[11.5px] uppercase tracking-[.2em] md:text-[12.8px]"
-                    >
+                <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <span className="bg-body px-5 py-2 font-primary text-[10px] uppercase tracking-[2.5px] text-bodyText">
                         View Details
-                    </Link>
+                    </span>
                 </div>
             </div>
-        </div>
+            <div className="pt-3">
+                <h3 className="line-clamp-1 font-primary text-[10.5px] uppercase tracking-[2px] text-bodyText">
+                    {product.name}
+                </h3>
+                <p className="mt-1 font-primary text-[11px] text-accent">
+                    TK {product.price}
+                </p>
+            </div>
+        </Link>
     );
 };
 

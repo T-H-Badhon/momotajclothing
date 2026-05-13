@@ -1,58 +1,32 @@
-'use client';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
+const items = [
+    { bold: 'Free Shipping', light: 'On orders over TK 500 within Kushtia' },
+    { bold: 'Easy Returns', light: 'Hassle-free 10-day returns & exchange' },
+    { bold: 'Pay on Delivery', light: 'Cash on delivery available' },
+    { bold: 'Custom Orders', light: 'Available for Panjabis, Sharis & 3-piece sets' },
+];
 
 const OfferSlider = () => {
-    const settings = {
-        dots: false,
-        arrows: false,
-        infinite: true,
-        autoplay: true,
-        speed: 400,
-        slidesToShow: 1,
-        autoplaySpeed: 3000,
-        pauseOnHover: false,
-        swipeToSlide: true,
-        slidesToScroll: 1,
-    };
+    const doubled = [...items, ...items];
 
     return (
-        <div className="slider-container bg-black px-4 md:px-10">
-            <Slider {...settings} className="h-[56px] md:h-[42px]">
-                {/*  */}
-                <SliderContent
-                    text="Nationwide shipping"
-                    textSpan="Spend TK500 = Free in Kushtia"
-                />
-                <SliderContent
-                    text="Hassle free returns"
-                    textSpan="10-day returns & exchange"
-                />
-                <SliderContent
-                    text="Buy now, pay later"
-                    textSpan="with cash on delivery"
-                />
-            </Slider>
-        </div>
-    );
-};
-
-const SliderContent = ({
-    text,
-    textSpan,
-}: {
-    text: string;
-    textSpan: string;
-}) => {
-    return (
-        <div className="h-[56px] md:h-[42px]">
-            <h3 className="flex h-full flex-col items-center justify-center gap-y-1 text-center text-[10px] font-bold uppercase leading-snug tracking-[2px] text-body md:flex-row md:text-[13px]">
-                {text}
-                <span className="font-sans text-[10px] font-medium capitalize tracking-wide opacity-85 md:pl-1 md:text-[13px]">
-                    {textSpan}
-                </span>
-            </h3>
+        <div className="overflow-hidden bg-[#111111] py-[10px]">
+            <div className="flex animate-marquee whitespace-nowrap">
+                {doubled.map((item, i) => (
+                    <span
+                        key={i}
+                        className="mx-6 inline-flex items-center gap-2"
+                    >
+                        <span className="font-primary text-[10px] font-semibold uppercase tracking-[2.5px] text-[#F8F5EF]">
+                            {item.bold}
+                        </span>
+                        <span className="text-[#9A7B4F]">—</span>
+                        <span className="font-primary text-[10px] capitalize tracking-[1px] text-[#F8F5EF]/70">
+                            {item.light}
+                        </span>
+                        <span className="ml-4 text-[#9A7B4F]/40">◆</span>
+                    </span>
+                ))}
+            </div>
         </div>
     );
 };
